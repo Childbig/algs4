@@ -21,8 +21,11 @@ public class Evalute {
         while (!StdIn.isEmpty()) {
             String s = StdIn.readString();
             if      (s.equals("("));
-            else if (s.equals("+"))     ops.push(s);
-            else if (s.equals("*"))     ops.push(s);
+            else if (s.equals("+"))        ops.push(s);
+            else if (s.equals("*"))        ops.push(s);
+            else if (s.equals("-"))        ops.push(s);
+            else if (s.equals("/"))        ops.push(s);
+            else if (s.equals("sqrt"))     ops.push(s);
             else if (s.equals(")")) {
                 String op = ops.pop();
                 if      (op.equals("+")) vals.push(vals.pop() + vals.pop());
