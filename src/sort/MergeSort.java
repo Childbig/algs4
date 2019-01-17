@@ -52,9 +52,6 @@ public class MergeSort {
             else                                 a[k] = aux[i++];
         }
     }
-
-
-
     private static Boolean less(Comparable a, Comparable b) {
         return a.compareTo(b) < 0;
     }
