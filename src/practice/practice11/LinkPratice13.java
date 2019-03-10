@@ -9,12 +9,10 @@ package practice.practice11;
  *
  *----------------------------------------------------------------*/
 
-import com.sun.scenario.effect.impl.prism.PrImage;
-
 public class LinkPratice13<Item> {
 
-    private Node first;
-    class Node {
+    private static Node first;
+    static class Node<Item> {
         Item item;
         Node next;
     }
@@ -111,6 +109,8 @@ public class LinkPratice13<Item> {
         if (link == null) return;
 
         Node current = link;
+        if (current.item == key)
+            current = current.next;
 
         while (current.next != null) {
             if (current.next.item == key) {
@@ -119,6 +119,56 @@ public class LinkPratice13<Item> {
                 current = current.next;
             }
         }
+    }
+
+    /**
+     * 反转链表并且返回结果链表的首节点
+     * @param x
+     * @return
+     */
+    private Node reverseNode(Node x) {
+        Node first = x;
+        Node reverse = null;
+        while (first != null) {
+            Node second = first.next;
+            first.next = reverse;
+            reverse = first;
+            first = second;
+        }
+        return reverse;
+    }
+    private Node recursionNode(Node x) {
+        if (x == null) return null;
+        if (x.next == null) return x;
+
+        Node second = first.next;
+        Node rest = recursionNode(second);
+        second.next = first;
+        first.next = null;
+        return rest;
+
+    }
+
+
+    public static void main(String[] args) {
+        Node<String> testNode = new Node();
+        Node<String> testNode1 = new Node();
+        Node<String> testNode2 = new Node();
+        Node<String> testNode3 = new Node();
+        Node<String> testNode4 = new Node();
+        testNode.item = "A";
+        testNode1.item = "B";
+        testNode2.item = "C";
+        testNode3.item = "D";
+        testNode4.item = "E";
+        testNode.next = testNode1;
+        testNode1.next = testNode2;
+        testNode2.next = testNode3;
+        testNode3.next = testNode4;
+
+        LinkPratice13 linkPratice13 = new LinkPratice13();
+        linkPratice13.recursionNode(testNode);
+      //  linkPratice13.recursionNode(testNode4);
     }
 
 

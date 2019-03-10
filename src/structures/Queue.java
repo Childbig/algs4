@@ -64,6 +64,35 @@ public class Queue<Item> implements Iterable<Item> {
         }
     }
 
+      /**
+     * 反转链表并且返回结果链表的首节点
+     * @param x
+     * @return
+     */
+    private Node reverseNode(Node x) {
+        Node first = x;
+        Node reverse = null;
+        while (first != null) {
+            Node second = first.next;
+            first.next = reverse;
+            reverse = first;
+            first = second;
+        }
+        return reverse;
+    }
+    public Node recursionNode(Node x) {
+        if (x == null) return null;
+        if (x.next == null) return x;
+
+        Node second = x.next;
+        Node rest = recursionNode(second);
+        second.next = x;
+        x.next = null;
+        return rest;
+    }
+
+
+
     public static void main(String[] args) {
         Queue<Integer> test = new Queue<>();
         test.enqueue(1);
@@ -71,7 +100,10 @@ public class Queue<Item> implements Iterable<Item> {
         test.enqueue(3);
         test.enqueue(4);
         test.enqueue(5);
+        test.recursionNode(test.first);
+
         test.dequeue();
         test.dequeue();
+
     }
 }
