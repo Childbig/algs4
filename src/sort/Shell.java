@@ -17,11 +17,12 @@ public class Shell {
         while (h < N/3) h = 3 * h + 1;
 
         while (h >= 1) {
-            for (int i = 0; i < N; i++) {
-                for (int j = 0; j >= h && less(a[j], a[j - h]); j -=h) {
+            for (int i = h; i < N; i++) {
+                for (int j = i; j >= h && less(a[j], a[j - h]); j -=h) {
                     exch(a, j, j - h);
                 }
             }
+            h = h/3;
         }
 
     }
@@ -32,8 +33,14 @@ public class Shell {
 
     private static void exch(Comparable[] a, int i, int j) {
         Comparable swap = a[j];
-        a[i] = a[j];
-        a[j] = swap;
+        a[j] = a[i];
+        a[i] = swap;
+    }
+
+
+    public static void main(String[] args) {
+        String[] a = {"S", "H","E", "L","L","S","O","R","T","E"};
+        sort(a);
     }
 
 }
