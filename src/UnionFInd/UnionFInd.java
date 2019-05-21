@@ -1,7 +1,5 @@
 package UnionFInd;
 
-import com.sun.xml.internal.bind.v2.model.core.ID;
-
 /*----------------------------------------------------------------
  *  Author:        Zhang Xuan
  *  Written:       2018/5/1

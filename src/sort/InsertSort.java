@@ -1,6 +1,7 @@
 package sort;
 
 import edu.princeton.cs.algs4.StdRandom;
+import edu.princeton.cs.algs4.Stopwatch;
 
 import java.util.Random;
 
@@ -14,46 +15,34 @@ import java.util.Random;
  *
  *----------------------------------------------------------------*/
 public class InsertSort {
-
     public static void sort(Comparable[] a) {
-        StdRandom.shuffle(a);
-        sort(a, 0, a.length - 1);
-    }
-    public static void sort(Comparable[] a, int lo, int hi) {
-       if (hi <= lo) return;
-       int j = partition(a, lo, hi);
-       sort(a, lo, j - 1);
-       sort(a, j + 1, hi);
-    }
+        int N = a.length;
 
-    private static int partition(Comparable[] a, int lo, int hi) {
-        int i = lo, j = hi + 1;
-        Comparable v = a[lo];
-
-        while (true) {
-            while (less(a[++i], v)) if (i == hi) break;
-            while (less(v, a[--j])) if (j == lo) break;
-            if (i >= j) break;
-            exch(a, i , j);
+        for (int i = 0; i < N; i++) {
+            for (int j = i; j > 0 && less(a[j], a[j -1]); j--) {
+                exch(a, j, j-1);
+            }
         }
-        exch(a, lo, j);
-        return j;
+
     }
 
-    public static boolean less(Comparable v, Comparable w) {
-        return v.compareTo(w) < 0;
+    private static Boolean less(Comparable a, Comparable b) {
+        return a.compareTo(b) < 0;
     }
 
-    public static void exch(Comparable[] a, int i, int j) {
-        Comparable swap = a[i];
+    private static void exch (Comparable[] a, int i, int j) {
+        Comparable temp = a[i];
         a[i] = a[j];
-        a[j] = swap;
+        a[j] = temp;
     }
+
+
+
 
     public static void main(String[] args) {
-        Integer[] a = {10, 11, 1, 2, 3, 4, 52};
+        String[] a = {"S", "H","E", "L","L","S","O","R","T","E", "A"};
         sort(a);
-
-        System.out.println(a.length);
+        for (String s : a)
+            System.out.println(s);
     }
 }

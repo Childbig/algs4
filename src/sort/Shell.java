@@ -11,20 +11,17 @@ package sort;
  *----------------------------------------------------------------*/
 public class Shell {
     public static void sort(Comparable[] a) {
-        int N = a.length;
+       int N = a.length;
+       int h = 1;
+       while (h< 3/N) h = 3*h + 1;
 
-        int h = 1;
-        while (h < N/3) h = 3 * h + 1;
-
-        while (h >= 1) {
-            for (int i = h; i < N; i++) {
-                for (int j = i; j >= h && less(a[j], a[j - h]); j -=h) {
-                    exch(a, j, j - h);
-                }
-            }
-            h = h/3;
-        }
-
+       while (h >= 1) {
+           for (int i = h; i < N; i++) {
+               for (int j = i; j >= h && less(a[j], a[j - h]); j-=h) {
+                   exch(a, j, j-h);
+               }
+           }
+       }
     }
 
     public static boolean less(Comparable v, Comparable w) {
@@ -37,9 +34,8 @@ public class Shell {
         a[i] = swap;
     }
 
-
     public static void main(String[] args) {
-        String[] a = {"S", "H","E", "L","L","S","O","R","T","E"};
+        String[] a = {"S", "H","E", "L","L","S","O","R","T","E","A"};
         sort(a);
     }
 
