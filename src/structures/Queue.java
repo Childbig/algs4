@@ -31,15 +31,17 @@ public class Queue<Item> implements Iterable<Item> {
         last = new Node();
         last.item = item;
         last.next = null;
-        if (isEmpty())  first = last;
-        else            oldfirst.next = last;
+        if (isEmpty())  {first = last;}
+        else            {oldfirst.next = last;}
 
         N++;
     }
     public Item dequeue() {
         Item item = first.item;
         first = first.next;
-        if (isEmpty())      last = null;
+        if (isEmpty())  {
+            last = null;
+        }
         N--;
         return item;
     }
@@ -94,16 +96,19 @@ public class Queue<Item> implements Iterable<Item> {
 
 
     public static void main(String[] args) {
-        Queue<Integer> test = new Queue<>();
-        test.enqueue(1);
-        test.enqueue(2);
-        test.enqueue(3);
-        test.enqueue(4);
-        test.enqueue(5);
-        test.recursionNode(test.first);
+        Queue<Integer> q = new Queue<>();
+        Stack<Integer> stack = new Stack<>();
+        q.enqueue(1);
+        q.enqueue(2);
+        q.enqueue(3);
+        q.enqueue(4);
+        q.enqueue(5);
 
-        test.dequeue();
-        test.dequeue();
+        while (!q.isEmpty())
+            stack.push(q.dequeue());
+        while (!stack.isEmpty())
+            q.enqueue(stack.pop());
 
+        System.out.println(q);
     }
 }
