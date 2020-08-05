@@ -1,4 +1,4 @@
-package leetcode;
+package leetcode.aug;
 
 import com.sun.deploy.util.StringUtils;
 
