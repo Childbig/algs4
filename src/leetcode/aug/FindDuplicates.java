@@ -33,15 +33,15 @@ public class FindDuplicates {
         for (int i = 0; i < nums.length; ++i) {
             int index = Math.abs(nums[i]) - 1;
             if (nums[index] < 0)
-                res.add(Math.abs(index + 1));
+                res.add(index + 1);
             nums[index] = -nums[index];
         }
         return res;
     }
 
     public static void main(String[] args) {
-        int[] test = {4,3,2,7,8,2,3,1};
+        int[] test = {4,3,2,7,8,2,3,7};
 
-        findDuplicates(test);
+        findDuplicates(test).forEach(System.out::println);
     }
 }
